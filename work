@@ -1,0 +1,55 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Введите строки через запятую:");
+        string[] inputArray = Console.ReadLine().Split(',');
+
+        string[] resultArray = GetShortStrings(inputArray);
+
+        if (resultArray.Length > 0)
+        {
+            Console.Write("Результат: [");
+            for (int i = 0; i < resultArray.Length; i++)
+            {
+                Console.Write("\"" + resultArray[i] + "\"");
+                if (i != resultArray.Length - 1)
+                {
+                    Console.Write(", ");
+                }
+            }
+            Console.WriteLine("]");
+        }
+        else
+        {
+            Console.WriteLine("Нет строк длиной меньше или равной 3 символам.");
+        }
+    }
+
+    static string[] GetShortStrings(string[] inputArray)
+    {
+        int resultArrayLength = 0;
+        for (int i = 0; i < inputArray.Length; i++)
+        {
+            if (inputArray[i].Length <= 3)
+            {
+                resultArrayLength++;
+            }
+        }
+
+        string[] resultArray = new string[resultArrayLength];
+        int j = 0;
+        for (int i = 0; i < inputArray.Length; i++)
+        {
+            if (inputArray[i].Length <= 3)
+            {
+                resultArray[j] = inputArray[i];
+                j++;
+            }
+        }
+
+        return resultArray;
+    }
+}
